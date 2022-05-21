@@ -1,0 +1,23 @@
+.navbar{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: white;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+    box-shadow: 0px 1px 10px 0px #888888;
+
+    &__find, &__check, &__title{
+        color: #4d4d4d;
+        transition: all .3s;
+
+        &:hover{
+            color: #bfbfbf;
+        }
+    }
+
+    a{
+        text-decoration: none;
+    }
+}
