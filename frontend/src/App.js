@@ -2,7 +2,9 @@ import './App.scss';
 import Navbar from './Navbar'
 import Home from './Home'
 import Find from './Find'
-import Check from './Check'
+import Updates from './Updates'
+import FindVideo from './FindVideo'
+import Repo from './Repo'
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 function App() {
@@ -13,7 +15,9 @@ function App() {
         <Switch>
           <Route exact path='/' component={Home}/>
           <Route exact path='/find' component={Find}/>
-          <Route exact path='/check' component={Check}/>
+          <Route exact path='/findvideo' component={FindVideo}/>
+          <Route exact path='/updates' component={Updates}/>
+          <Route exact path='/repo' component={Repo}/>
         </Switch>
       </div>
     </BrowserRouter>

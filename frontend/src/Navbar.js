@@ -5,9 +5,11 @@ import {Link} from 'react-router-dom'
 export default function Navbar() {
   return (
     <div className='navbar'>
-        <Link to='/find'><h2 className='navbar__find'>Find</h2></Link>
+        <Link to='/find'><h2 className='navbar__find'>Websites</h2></Link>
+        <Link to='/findvideo'><h2 className='navbar__findvideo'>Videos</h2></Link>
         <Link to='/'><h1 className='navbar__title'>Buildnow</h1></Link>
-        <Link to='/check'><h2 className='navbar__check'>Check</h2></Link>
+        <Link to='/repo'><h2 className='navbar__repo'>Repository</h2></Link>
+        <Link to='/updates'><h2 className='navbar__updates'>Updates</h2></Link>
     </div>
   )
 }
