@@ -1,3 +1,54 @@
 .updates{
-    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__desc{
+        background-color: white;
+        width: 500px;
+        margin: auto;
+        border-radius: 15px;
+        padding: 20px;
+        margin-top: 40px;
+        color: #4d4d4d;
+        margin-top: 40px;
+    }
+
+    &__input{
+        display: flex;
+        margin-top: 40px;
+        &__area{
+            &__field{
+                width: 500px;
+                font-size: 30px;
+                padding: 5px 10px;
+                border-radius: 10px;
+                border: none;
+
+                &:focus{
+                    outline: none;
+                }
+            }
+        }
+        &__add{
+            border: none;
+            background-color: white;
+            transition: all .3s;
+            box-shadow: none;
+            border-radius: 10px;
+            font-size: 30px;
+            padding: 5px 10px;
+            margin-left: 20px;
+            cursor: pointer;
+
+            &:hover{
+                background-color: #d9d9d9
+            }
+        }
+    }
+
+    &__track{
+        
+    }
 }
+

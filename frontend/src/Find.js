@@ -57,7 +57,7 @@ export default function Find() {
                         ))}
                         
                     </div>
-                    <p className="find__results__result__linkContainer"><a href={urls[index]} className="find__results__result__linkContainer__text">Go &gt;</a></p>
+                    <p className="find__results__result__linkContainer"><a target='_blank' rel="noreferrer" href={urls[index]} className="find__results__result__linkContainer__text">Go &gt;</a></p>
                 </div>
             ))}
         </div>
