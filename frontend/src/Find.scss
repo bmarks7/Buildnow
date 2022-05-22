@@ -11,7 +11,9 @@
         margin-top: 40px;
         margin-bottom: 10px;
     }
-
+    &__search{
+        display: flex;
+        align-items: center;
     &__searchField{
         box-shadow: none;
         border: none;
@@ -49,13 +51,15 @@
         font-size: 30px;
         border-radius: 15px;
         transition: all .3s;
-        margin-top: 60px;
+        // margin-top: 30px;
+        margin-left: 20px;
         cursor: pointer;
         color: #4d4d4d;
 
         &:hover{
             background-color: #d9d9d9
         }
+    }
     }
 
     &__resultsHeader{

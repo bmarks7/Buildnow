@@ -45,28 +45,31 @@ export default function Find() {
   return (
     <div className='findvideo'>
         <label className='findvideo__queryLabel' htmlFor="">Video Search Query</label>
+        <div className="findvideo__search">
         <input 
-        className='findvideo__searchField' 
+        className='findvideo__search__searchField' 
         type="text" 
         placeholder='e.x. React Router' 
         value={searchVal}
         onChange = {(e) => {setSearchVal(e.target.value)}}
         />
-        <label className='findvideo__numberLabel' htmlFor="">Number of Results</label>
+        {/* <label className='findvideo__numberLabel' htmlFor="">Number of Results</label>
         <input 
         type="number" 
         min="1" 
         className='findvideo__numberField' 
         placeholder='e.x. 1'
         value={numResutlts}
-        onChange = {(e) => {setNumResults(e.target.value)}}/>
+        onChange = {(e) => {setNumResults(e.target.value)}}/> */}
         <button 
-            className='findvideo__searchBtn' 
+            className='findvideo__search__searchBtn' 
             disabled={searching} 
             style={{backgroundColor: ((searching === true) ? '#d9d9d9' : 'white')}}
             onClick = {() => {
             setSearching(true)
             search()}}>{(searching === true) ? 'Searching...' : 'Search'}</button>
+
+        </div>
 
         <p className="findvideo__resultsHeader">Results</p>
 

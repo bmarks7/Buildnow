@@ -48,7 +48,7 @@ def findSites(query, numResults):
     setsOfEntities = []
     titles = []
     
-    for url in search(query, tld="co.in", num=int(numResults), stop=int(numResults), pause=1):
+    for url in search(query, tld="co.in", num=10, stop=10, pause=1):
 
         result = requests.get(url).text
         doc = BeautifulSoup(result, 'html.parser')
@@ -94,7 +94,7 @@ videos_folder = '/Users/brandonmarks/Downloads/Projects/gryphhacks2022/backend/v
 @app.route("/videos/<query>/<numResults>")
 def findVideos(query, numResults):
     client = language_v1.LanguageServiceClient()
-    videos = VideosSearch(query, limit = int(numResults)).result()
+    videos = VideosSearch(query, limit = 10).result()
     videos = videos['result']
 
     video_urls = []

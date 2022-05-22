@@ -46,29 +46,31 @@ export default function Find() {
   return (
     <div className='find'>
         <label className='find__queryLabel' htmlFor="">Website Search Query</label>
-        <input 
-        className='find__searchField' 
-        type="text" 
-        placeholder='e.x. React Router' 
-        value={searchVal}
-        onChange = {(e) => {setSearchVal(e.target.value)}}
-        />
-        <label className='find__numberLabel' htmlFor="">Number of Results</label>
-        <input 
-        type="number" 
-        min="1" 
-        className='find__numberField' 
-        placeholder='e.x. 1'
-        value={numResutlts}
-        onChange = {(e) => {setNumResults(e.target.value)}}/>
-        <button 
-            disabled={searching} 
-            className='find__searchBtn' 
-            style={{backgroundColor: ((searching === true) ? '#d9d9d9' : 'white')}}
-            onClick = {() => {
-                setSearching(true)
-                search()
-            }}>{(searching === true) ? 'Searching...' : 'Search'}</button>
+        <div className='find__search'>
+            <input 
+            className='find__search__searchField' 
+            type="text" 
+            placeholder='e.x. React Router' 
+            value={searchVal}
+            onChange = {(e) => {setSearchVal(e.target.value)}}
+            />
+            {/* <label className='find__numberLabel' htmlFor="">Number of Results</label>
+            <input 
+            type="number" 
+            min="1" 
+            className='find__numberField' 
+            placeholder='e.x. 1'
+            value={numResutlts}
+            onChange = {(e) => {setNumResults(e.target.value)}}/> */}
+            <button 
+                disabled={searching} 
+                className='find__search__searchBtn' 
+                style={{backgroundColor: ((searching === true) ? '#d9d9d9' : 'white')}}
+                onClick = {() => {
+                    setSearching(true)
+                    search()
+                }}>{(searching === true) ? 'Searching...' : 'Search'}</button>
+        </div>
 
         <p className="find__resultsHeader">Results</p>
 
