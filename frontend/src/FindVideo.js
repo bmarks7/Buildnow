@@ -8,7 +8,7 @@ export default function Find() {
     const [entitySets, setEntitySets] = useState([])
     const [titles, setTitles] = useState([])
     const [urls, setUrls] = useState([])
-
+    const [searching, setSearching] = useState(false)
 
     async function search(){ 
         if (searchVal.length > 0){
@@ -21,8 +21,25 @@ export default function Find() {
                 setEntitySets(data.setsOfEntities)
                 setTitles(data.titles)
                 setUrls(data.urls)
+                setSearching(false)
             })
+        }else{
+            setSearching(false)
         }
+    }
+
+    function addResource(name, url){
+        fetch('http://localhost:5000/resource', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json', 
+            },
+            body: JSON.stringify({
+                name: name,
+                url: url
+            })
+        })
     }
 
   return (
@@ -43,7 +60,13 @@ export default function Find() {
         placeholder='e.x. 1'
         value={numResutlts}
         onChange = {(e) => {setNumResults(e.target.value)}}/>
-        <button className='findvideo__searchBtn' onClick = {search}>Search</button>
+        <button 
+            className='findvideo__searchBtn' 
+            disabled={searching} 
+            style={{backgroundColor: ((searching === true) ? '#d9d9d9' : 'white')}}
+            onClick = {() => {
+            setSearching(true)
+            search()}}>{(searching === true) ? 'Searching...' : 'Search'}</button>
 
         <p className="findvideo__resultsHeader">Results</p>
 
@@ -57,7 +80,10 @@ export default function Find() {
                         ))}
                         
                     </div>
-                    <p className="findvideo__results__result__linkContainer"><a target='_blank' rel="noreferrer" href={urls[index]} className="findvideo__results__result__linkContainer__text">Go &gt;</a></p>
+                    <div className="findvideo__results__result__buttons">
+                        <p className="findvideo__results__result__buttons__linkContainer"><a target='_blank' rel="noreferrer" href={urls[index]} className="findvideo__results__result__buttons__linkContainer__text">Go &gt;</a></p>
+                        <button className="findvideo__results__result__buttons__addBtn" onClick={() => addResource(titles[index], urls[index])}>Add</button>
+                    </div>
                 </div>
             ))}
         </div>

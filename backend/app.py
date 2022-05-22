@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import requests
 from google.cloud import language_v1
 from googlesearch import search
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from flask import jsonify, request, Flask
 from youtubesearchpython import VideosSearch
 from pytube import YouTube
@@ -13,6 +13,7 @@ import os
 from google.cloud import speech
 from youtube_transcript_api import YouTubeTranscriptApi
 from flask_sqlalchemy import SQLAlchemy
+from flask.helpers import send_from_directory
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
@@ -20,10 +21,16 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 CORS(app)
 
-class Tech(db.Model):
+class Resource(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name=db.Column(db.String)
     url=db.Column(db.String)
+    # collection_id = db.Column(db.Integer, db.ForeignKey('collection.id'))
+
+class Collection(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name=db.Column(db.String)
+    # resources = db.relationship('Resource', backref='collection')
 
 db.create_all()
 
@@ -37,7 +44,6 @@ def func():
 def findSites(query, numResults):
     client = language_v1.LanguageServiceClient()
  
-    # query = "Geeksforgeeks"
     urls = []
     setsOfEntities = []
     titles = []
@@ -47,8 +53,8 @@ def findSites(query, numResults):
         result = requests.get(url).text
         doc = BeautifulSoup(result, 'html.parser')
         
-        # tags_list = ["b", "em", "i", "mark", "p", "strong", "u"]
-        tags_list = ["p"]
+        tags_list = ["b", "em", "i", "mark", "p", "strong", "u"]
+        # tags_list = ["p"]
 
         entities = []
         text = ""
@@ -98,7 +104,9 @@ def findVideos(query, numResults):
     for video in videos:
         entities = []
         totalTxt = ""
+        print('aaa')
         tx = YouTubeTranscriptApi.get_transcript(video['id'])
+        print('bbb')
         for i in tx:
             totalTxt += i['text'] + " "
 
@@ -111,7 +119,6 @@ def findVideos(query, numResults):
 
         for entity in response.entities:
             if not str(entity.type_) in unwanted_entity_types and entity.salience >= 0.0005:
-                print(entity.salience)
                 entity_lower = entity.name.lower()
                 if not entity_lower in entities:
                     entities.append(entity_lower)
@@ -130,24 +137,37 @@ def findVideos(query, numResults):
 
     return results
 
-@app.route("/addTech", methods=["POST"])
-def addTech():
-    data = request.json
-    print(data['name'])
-    print(data['url'])
-    new_tech = Tech(name=data['name'], url = data['url'])
-    db.session.add(new_tech)
+
+@app.route("/resource", methods=["POST"])
+def addResource():
+    data = request.get_json()
+    new_resource = Resource(name = data['name'], url = data['url'])
+    db.session.add(new_resource)
     db.session.commit()
-    return {"response": "successful"}
 
+    return jsonify({"success": True})
 
-@app.route("/getTech", methods=["GET"])
-def getTech():
-    allTech = Tech.query.all()
-    allTechArr = []
-    for tech in allTech:
-        allTechArr.append({"name": tech.name, "url": tech.url})
-    return jsonify(allTechArr)
+@app.route("/resource/<url>", methods=["DELETE"])
+def deleteResource(url):
+    removed_resource = Resource.query.filter_by(url = url).first()
+    db.session.delete(removed_resource)
+    db.session.commit()
+
+    return jsonify({"success": True})
+
+@app.route("/resource", methods=["GET"])
+def getResources():
+    resourcesList = []
+    allResources = Resource.query.all()
+    for res in allResources:
+        resourcesList.append({"name": res.name, "url": res.url})
+
+    return jsonify(resourcesList)
+
+@app.route('/')
+def serve():
+    return send_from_directory(app.static_folder, 'index.html')
+
 
 # my_video = YouTube('https://www.youtube.com/watch?v=7BXJIjfJCsA')
 # stream = my_video.streams.first()

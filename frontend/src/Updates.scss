@@ -16,14 +16,15 @@
 
     &__input{
         display: flex;
-        margin-top: 40px;
+        margin-top: 70px;
         &__area{
             &__field{
-                width: 500px;
+                width: 430px;
                 font-size: 30px;
                 padding: 5px 10px;
                 border-radius: 10px;
                 border: none;
+                color: #4d4d4d;
 
                 &:focus{
                     outline: none;
@@ -48,7 +49,60 @@
     }
 
     &__track{
-        
+        margin-top: 20px;
+
+        &__item{
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 500px;
+
+            &__name{
+                color: #4d4d4d;
+                font-size: 30px;
+            }
+
+            &__linkContainer{
+                background-color: #3333ff;
+                padding: 5px;
+                border-radius: 10px;
+                width: 45px;
+                transition: all .3s;
+                &__link{
+                    text-decoration: none;
+                    color: white;
+                    font-size: 20px;
+                }
+                &:hover{
+                    background-color: #6666ff;
+                }
+            }
+
+            &__buttons{
+                display: flex;
+                align-items: center;
+            }
+
+            &__deleteBtn{
+                background-color: #3333ff;
+                color: white;
+                border: none;
+                box-shadow: none;
+                border-radius: 10px;
+                width: 70px;
+                padding: 5px;
+                font-size: 20px;
+                margin-left: 10px;
+                cursor: pointer;
+
+                &:hover{
+                    background-color: #6666ff;
+                }
+            }
+        }
     }
 }
 

@@ -79,20 +79,43 @@
                 margin: 0px 0px 20px 0px;
             }
 
-            &__linkContainer{
+            &__buttons{
+                display: flex;
+                align-items: center;
                 margin-top: 30px;
-                background-color: #3333ff;
-                padding: 5px;
-                border-radius: 10px;
-                width: 50px;
-                transition: all .3s;
-                &__text{
-                    text-decoration: none;
-                    color: white;
-                    font-size: 20px;
+
+                &__linkContainer{
+                    background-color: #3333ff;
+                    padding: 5px;
+                    border-radius: 10px;
+                    width: 45px;
+                    transition: all .3s;
+                    &__text{
+                        text-decoration: none;
+                        color: white;
+                        font-size: 20px;
+                    }
+                    &:hover{
+                        background-color: #6666ff;
+                    }
                 }
-                &:hover{
-                    background-color: #6666ff;
+
+                &__addBtn{
+                    background-color: #3333ff;
+                    color: white;
+                    border: none;
+                    box-shadow: none;
+                    border-radius: 10px;
+                    width: 70px;
+                    padding: 5px;
+                    font-size: 20px;
+                    margin-left: 10px;
+                    cursor: pointer;
+                    transition: all .3s;
+
+                    &:hover{
+                        background-color: #6666ff;
+                    }
                 }
             }
 

@@ -1,1 +1,88 @@
+.repo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
+    &__desc{
+        background-color: white;
+        width: 500px;
+        margin: auto;
+        border-radius: 15px;
+        padding: 20px;
+        margin-top: 40px;
+        color: #4d4d4d;
+        margin-top: 40px;
+    }
+
+    &__input{
+        display: flex;
+        margin-top: 90px;
+        &__area{
+            &__field{
+                width: 430px;
+                font-size: 30px;
+                padding: 5px 10px;
+                border-radius: 10px;
+                border: none;
+                color: #4d4d4d;
+
+                &:focus{
+                    outline: none;
+                }
+            }
+        }
+        &__add{
+            border: none;
+            background-color: white;
+            transition: all .3s;
+            box-shadow: none;
+            border-radius: 10px;
+            font-size: 30px;
+            padding: 5px 10px;
+            margin-left: 20px;
+            cursor: pointer;
+
+            &:hover{
+                background-color: #d9d9d9
+            }
+        }
+    }
+
+    &__resources{
+        margin-top: 20px;
+
+        &__res{
+            padding: 10px 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 500px;
+            background-color: white;
+
+            &__name{
+                color: #4d4d4d;
+                font-size: 30px;
+            }
+
+            &__goBtn{
+                background-color: #3333ff;
+                color: white;
+                border: none;
+                box-shadow: none;
+                border-radius: 10px;
+                width: 70px;
+                padding: 5px;
+                font-size: 20px;
+                margin-left: 10px;
+                cursor: pointer;
+                transition: all .3s;
+
+                &:hover{
+                    background-color: #6666ff;
+                }
+            }
+        }
+    }
+}
