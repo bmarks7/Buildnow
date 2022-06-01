@@ -169,19 +169,9 @@ def serve():
     return send_from_directory(app.static_folder, 'index.html')
 
 
-# my_video = YouTube('https://www.youtube.com/watch?v=7BXJIjfJCsA')
-# stream = my_video.streams.first()
-# stream.download()
-# video_name = "YouTube video downloader  Python project  Pytube  Easy Tutorial.3gpp"
-# audio_name = "YouTube video downloader  Python project  Pytube  Easy Tutorial.mp3"
-# clip = mp.VideoFileClip(r"{0}".format(video_name))
-# clip.audio.write_audiofile(r"{0}".format(audio_name))
-# os.remove(video_name)
-
 if __name__ == '__main__':
     app.run()
 
 
-# export GOOGLE_APPLICATION_CREDENTIALS="/Users/brandonmarks/Downloads/Projects/GryphHacks2022/backend/newlive-287702-59a80a53c2a2.json"
 
 
